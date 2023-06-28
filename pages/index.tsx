@@ -3,7 +3,10 @@ import Questionario from '../components/Questionario'
 import QuestaoModel from '../model/questao'
 import { useRouter } from 'next/router'
 
+// const BASE_URL = '/api'
 const BASE_URL = 'https://quiz-next-js-chi.vercel.app/api'
+
+
 
 export default function Home() {
   const router = useRouter()
@@ -24,11 +27,23 @@ export default function Home() {
     const novaQuestao = QuestaoModel.criarUsandoObjeto(json)
     setQuestao(novaQuestao)
   }
+
+  function extrairPrimeiraPalavraDominio(href: string) {
+    const regex = /https:\/\/(\w+)\./;
+    const resultado = regex.exec(href);
   
+    if (resultado && resultado.length > 1) {
+      return resultado[1];
+    } else {
+      return null;
+    }
+  }
+
   useEffect(() => {
     carregarIdsDasQuestoes()
-    const href = window.location.href
-    console.log('Domínio:', href);
+    const href = JSON.stringify(window.location.href)
+    const primeiraPalavra = extrairPrimeiraPalavraDominio(href);
+    console.log('primeiraPalavra:', primeiraPalavra);
   }, [])
 
   useEffect(() => {
