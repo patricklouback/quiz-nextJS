@@ -28,22 +28,8 @@ export default function Home() {
     setQuestao(novaQuestao)
   }
 
-  function extrairPrimeiraPalavraDominio(href: string) {
-    const regex = /https:\/\/(\w+)\./;
-    const resultado = regex.exec(href);
-  
-    if (resultado && resultado.length > 1) {
-      return resultado[1];
-    } else {
-      return null;
-    }
-  }
-
   useEffect(() => {
     carregarIdsDasQuestoes()
-    const href = JSON.stringify(window.location.href)
-    const primeiraPalavra = extrairPrimeiraPalavraDominio(href);
-    console.log('primeiraPalavra:', primeiraPalavra);
   }, [])
 
   useEffect(() => {
