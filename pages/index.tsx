@@ -24,9 +24,11 @@ export default function Home() {
     const novaQuestao = QuestaoModel.criarUsandoObjeto(json)
     setQuestao(novaQuestao)
   }
-
+  
   useEffect(() => {
     carregarIdsDasQuestoes()
+    const href = window.location.href
+    console.log('Domínio:', href);
   }, [])
 
   useEffect(() => {
